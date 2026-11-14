@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "toolchaos"
+version = "0.1.0"
+description = "Record/replay and fault injection for tool-using LLM agents: deterministic agent tests and a resilience matrix, with no API calls."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Jubayer Siddiki Ayan" }]
+requires-python = ">=3.10"
+dependencies = []
+keywords = ["llm", "agents", "testing", "chaos-engineering", "fault-injection", "record-replay"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+toolchaos = "toolchaos.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
