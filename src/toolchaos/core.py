@@ -188,7 +188,7 @@ class Session:
                 "args": to_jsonable(args), "kwargs": to_jsonable(kwargs)}
 
     def _after(self, entry: dict, fault: Fault | None) -> Any:
-        if self.mode == "record" and entry not in self.calls:
+        if self.mode == "record":
             self.calls.append(entry)
         elif self.mode == "replay":
             self.calls.append({"name": entry["name"], "key": entry["key"]})

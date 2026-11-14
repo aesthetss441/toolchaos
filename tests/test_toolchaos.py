@@ -84,3 +84,10 @@ def test_matrix_separates_a_fragile_agent_from_a_robust_one(tmp_path):
     persistent = statuses(support_agent.robust_agent, True)
     assert "crashed" not in persistent.values(), persistent
     assert persistent["llm:garbage (persistent)"] == "degraded"
+
+
+def test_identical_calls_are_each_recorded(tmp_path):
+    with Session(tmp_path / "c.jsonl", mode="record") as s:
+        tick = s.wrap(lambda: "ok", name="tick")
+        tick(), tick()
+    assert len((tmp_path / "c.jsonl").read_text().splitlines()) == 2
